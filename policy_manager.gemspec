@@ -1,33 +1,22 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'policy_manager/version'
+$:.push File.expand_path("lib", __dir__)
 
-Gem::Specification.new do |spec|
-  spec.name          = "policy_manager"
-  spec.version       = PolicyManager::VERSION
-  spec.authors       = ["Uqido team"]
-  spec.email         = ["nicolae.teslaru@uqido.com"]
+# Maintain your gem's version:
+require "policy_manager/version"
 
-  spec.summary       = %q{A gem to manage your GDPR policies}
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-  spec.license       = "MIT"
+# Describe your gem and declare its dependencies:
+Gem::Specification.new do |s|
+  s.name        = "policy_manager"
+  s.version     = PolicyManager::VERSION
+  s.authors     = ["Uqido"]
+  s.email       = ["teslaruzero@gmail.com"]
+  # s.homepage    = "TODO"
+  s.summary     = %q{A gem to manage your GDPR policies}
+  # s.description = "TODO: Description of PolicyManager."
+  s.license     = "MIT"
 
-  # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
-  # delete this section to allow pushing this gem to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  s.add_dependency "rails", "~> 4.2.7"
 
-  spec.add_development_dependency "bundler", "~> 1.11"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  s.add_development_dependency "sqlite3"
 end
