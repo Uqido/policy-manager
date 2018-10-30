@@ -9,7 +9,6 @@ module PolicyManager
           has_many :policies, through: :user_policies, class_name: "PolicyManager::Policy"
 
           PolicyManager::PolicyHelper.signable_policies.each do |policy|
-
             define_method :"has_consented_#{policy.policy_type}?" do
               user_policy = PolicyManager::UserPolicy.find_by(policy_id: policy.id)
 
