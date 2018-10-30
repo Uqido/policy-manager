@@ -9,7 +9,7 @@ module PolicyManager
       yield self
 
       # sets this defaults after configuration
-      @@user_resource ||= User
+      @@user_resource ||= 'User'
 
       self
     end
