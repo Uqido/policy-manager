@@ -1,0 +1,2124 @@
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-31 14:40:23 +0100
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/railties-4.2.10/lib/rails/templates/rails/welcome/index.html.erb (1.7ms)
+Completed 200 OK in 10ms (Views: 10.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (5.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (5.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePolicyManagerPolicies (20181031134107)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "policy_manager_policies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "policy_type" varchar, "content" text, "version" integer, "blocking" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20181031134107"]]
+  [1m[36m (5.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePolicyManagerUserPolicies (20181031134108)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "policy_manager_user_policies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "policy_id" integer, "accepted" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20181031134108"]]
+  [1m[36m (4.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20181031134131)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20181031134131"]]
+  [1m[36m (5.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1[0m  [["policy_type", "cookie"], ["version", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mPolicyManager::Policy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "policy_manager_policies" WHERE "policy_manager_policies"."version" = 1 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "policy_manager_policies" ("policy_type", "version", "content", "blocking", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["policy_type", "cookie"], ["version", 1], ["content", "<p> This is the Cookie Policy</p>"], ["blocking", "f"], ["created_at", "2018-10-31 13:47:54.102887"], ["updated_at", "2018-10-31 13:47:54.102887"]]
+  [1m[36m (4.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mPolicyManager::Policy Load (0.0ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPolicyManager::Policy Exists (0.1ms)[0m  SELECT  1 AS one FROM "policy_manager_policies" WHERE "policy_manager_policies"."version" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35mPolicyManager::Policy Load (0.0ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPolicyManager::Policy Exists (0.1ms)[0m  SELECT  1 AS one FROM "policy_manager_policies" WHERE "policy_manager_policies"."version" = 2 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "policy_manager_policies" ("policy_type", "version", "content", "blocking", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["policy_type", "privacy"], ["version", 2], ["content", "<p> This is the Privacy Policy</p>"], ["blocking", "t"], ["created_at", "2018-10-31 13:47:54.117383"], ["updated_at", "2018-10-31 13:47:54.117383"]]
+  [1m[35m (4.2ms)[0m  commit transaction
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1[0m  [["policy_type", "cookie"], ["version", 1]]
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPolicyManager::Policy Exists (0.1ms)[0m  SELECT  1 AS one FROM "policy_manager_policies" WHERE "policy_manager_policies"."version" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 2]]
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-31 14:51:26 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/railties-4.2.10/lib/rails/templates/rails/welcome/index.html.erb (1.1ms)
+Completed 200 OK in 6ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1[0m  [["policy_type", "cookie"], ["version", 1]]
+  [1m[35mPolicyManager::Policy Load (0.0ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mPolicyManager::Policy Exists (0.1ms)[0m  SELECT  1 AS one FROM "policy_manager_policies" WHERE "policy_manager_policies"."version" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 2]]
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-31 14:55:07 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/railties-4.2.10/lib/rails/templates/rails/welcome/index.html.erb (1.1ms)
+Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 14:55:12 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.4ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (41.1ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 14:56:42 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (21.7ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 14:57:27 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.5ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (21.2ms)
+
+
+Started GET "/policy_manager/policies/1" for 127.0.0.1 at 2018-10-31 14:57:44 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policy_manager/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (21.8ms)
+
+
+Started GET "/policies" for 127.0.0.1 at 2018-10-31 14:57:56 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  [1m[35mPolicyManager::Policy Load (0.2ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 7ms (ActiveRecord: 0.8ms)
+
+ActiveRecord::RecordNotFound (Couldn't find PolicyManager::Policy with 'id'=):
+  activerecord (4.2.10) lib/active_record/core.rb:155:in `find'
+  /home/teslazero/Desktop/Projects/policy-manager/app/controllers/policy_manager/policies_controller.rb:13:in `set_policy'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.2ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (17.1ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 14:58:15 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (21.6ms)
+
+
+Started GET "/policies" for 127.0.0.1 at 2018-10-31 14:59:01 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  [1m[36mPolicyManager::Policy Load (0.2ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find PolicyManager::Policy with 'id'=):
+  activerecord (4.2.10) lib/active_record/core.rb:155:in `find'
+  /home/teslazero/Desktop/Projects/policy-manager/app/controllers/policy_manager/policies_controller.rb:13:in `set_policy'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.2ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (17.8ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 15:00:15 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.4ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (24.6ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 15:01:02 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (22.5ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 15:01:04 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.9ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.5ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (23.4ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 15:01:14 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (23.5ms)
+
+
+Started GET "/policies/1" for 127.0.0.1 at 2018-10-31 15:03:45 +0100
+
+ActionController::RoutingError (No route matches [GET] "/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.5ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.9ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (20.7ms)
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:03:58 +0100
+
+ActionController::RoutingError (No route matches [GET] "/asd/policies/1"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (25.9ms)
+
+
+Started GET "/asd/policies" for 127.0.0.1 at 2018-10-31 15:04:01 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  [1m[35mPolicyManager::Policy Load (0.2ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 9ms (ActiveRecord: 1.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find PolicyManager::Policy with 'id'=):
+  activerecord (4.2.10) lib/active_record/core.rb:155:in `find'
+  /home/teslazero/Desktop/Projects/policy-manager/app/controllers/policy_manager/policies_controller.rb:13:in `set_policy'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (18.2ms)
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:06:00 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered /home/teslazero/Desktop/Projects/policy-manager/app/views/policy_manager/policies/show.html.erb within layouts/policy_manager/application (0.6ms)
+Completed 500 Internal Server Error in 357ms (ActiveRecord: 0.6ms)
+
+ActionView::Template::Error (File to import not found or unreadable: bootstrap.
+Load paths:
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/stylesheets
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/stylesheets):
+    2: <html>
+    3: <head>
+    4:   <title>PolicyManager</title>
+    5:   <%= stylesheet_link_tag "policy_manager/application", media: "all" %>
+    6:   <%= javascript_include_tag "policy_manager/application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/stylesheets/policy_manager/application.scss:1
+  sass (3.6.0) lib/sass/tree/import_node.rb:67:in `rescue in import'
+  sass (3.6.0) lib/sass/tree/import_node.rb:45:in `import'
+  sass (3.6.0) lib/sass/tree/import_node.rb:28:in `imported_file'
+  sass (3.6.0) lib/sass/tree/import_node.rb:37:in `css_import?'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:310:in `visit_import'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+  sass (3.6.0) lib/sass/stack.rb:79:in `block in with_base'
+  sass (3.6.0) lib/sass/stack.rb:135:in `with_frame'
+  sass (3.6.0) lib/sass/stack.rb:79:in `with_base'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:158:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `map'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `block in visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:157:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:10:in `visit'
+  sass (3.6.0) lib/sass/tree/root_node.rb:36:in `css_tree'
+  sass (3.6.0) lib/sass/tree/root_node.rb:20:in `render'
+  sass (3.6.0) lib/sass/engine.rb:290:in `render'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:74:in `block in call'
+  sprockets (3.7.2) lib/sprockets/utils.rb:171:in `module_include'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:73:in `call'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:30:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:23:in `block in call'
+  sprockets (3.7.2) lib/sprockets/utils.rb:200:in `dfs'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:24:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+  sprockets (3.7.2) lib/sprockets/base.rb:92:in `[]'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:355:in `find_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+  /home/teslazero/Desktop/Projects/policy-manager/app/views/layouts/policy_manager/application.html.erb:5:in `__home_teslazero__esktop__rojects_policy_manager_app_views_layouts_policy_manager_application_html_erb___188911859827450305_70143970919560'
+  actionview (4.2.10) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.10) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.10) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.10) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.10) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.10) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (19.3ms)
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1[0m  [["policy_type", "cookie"], ["version", 1]]
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPolicyManager::Policy Exists (0.1ms)[0m  SELECT  1 AS one FROM "policy_manager_policies" WHERE "policy_manager_policies"."version" = 1 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 2]]
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:10:08 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPolicyManager::Policy Load (0.2ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered /home/teslazero/Desktop/Projects/policy-manager/app/views/policy_manager/policies/show.html.erb within layouts/policy_manager/application (2.0ms)
+Completed 500 Internal Server Error in 311ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (couldn't find file 'jquery3' with type 'application/javascript'
+Checked in these paths: 
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/stylesheets
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/stylesheets):
+    2: <html>
+    3: <head>
+    4:   <title>PolicyManager</title>
+    5:   <%= stylesheet_link_tag "policy_manager/application", media: "all" %>
+    6:   <%= javascript_include_tag "policy_manager/application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/javascripts/policy_manager/application.js:14
+  sprockets (3.7.2) lib/sprockets/resolve.rb:65:in `resolve!'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:399:in `resolve'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:207:in `process_require_directive'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:180:in `block in process_directives'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:178:in `each'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:178:in `process_directives'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:83:in `_call'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:68:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:23:in `block in call'
+  sprockets (3.7.2) lib/sprockets/utils.rb:200:in `dfs'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:24:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+  sprockets (3.7.2) lib/sprockets/base.rb:73:in `find_all_linked_assets'
+  sprockets (3.7.2) lib/sprockets/manifest.rb:142:in `block in find'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:114:in `block (2 levels) in logical_paths'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:228:in `block in stat_tree'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:212:in `block in stat_directory'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:209:in `each'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:209:in `stat_directory'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:227:in `stat_tree'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:231:in `block in stat_tree'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:212:in `block in stat_directory'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:209:in `each'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:209:in `stat_directory'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:227:in `stat_tree'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:105:in `each'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:105:in `block in logical_paths'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:104:in `each'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:104:in `logical_paths'
+  sprockets (3.7.2) lib/sprockets/manifest.rb:140:in `find'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:50:in `each'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:50:in `map'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:50:in `precompiled_assets'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:35:in `asset_precompiled?'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:251:in `block (3 levels) in <class:Railtie>'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:359:in `call'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:359:in `precompiled?'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:363:in `raise_unless_precompiled_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:348:in `find_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+  /home/teslazero/Desktop/Projects/policy-manager/app/views/layouts/policy_manager/application.html.erb:5:in `__home_teslazero__esktop__rojects_policy_manager_app_views_layouts_policy_manager_application_html_erb___1647599418394115589_70078131085420'
+  actionview (4.2.10) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.10) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.10) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.10) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.10) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.10) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (36.9ms)
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:12:12 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPolicyManager::Policy Load (0.2ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered /home/teslazero/Desktop/Projects/policy-manager/app/views/policy_manager/policies/show.html.erb within layouts/policy_manager/application (0.1ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (File to import not found or unreadable: bootstrap.
+Load paths:
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/stylesheets
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/stylesheets):
+    2: <html>
+    3: <head>
+    4:   <title>PolicyManager</title>
+    5:   <%= stylesheet_link_tag "policy_manager/application", media: "all" %>
+    6:   <%= javascript_include_tag "policy_manager/application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/stylesheets/policy_manager/application.scss:1
+  sass (3.6.0) lib/sass/tree/import_node.rb:67:in `rescue in import'
+  sass (3.6.0) lib/sass/tree/import_node.rb:45:in `import'
+  sass (3.6.0) lib/sass/tree/import_node.rb:28:in `imported_file'
+  sass (3.6.0) lib/sass/tree/import_node.rb:37:in `css_import?'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:310:in `visit_import'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+  sass (3.6.0) lib/sass/stack.rb:79:in `block in with_base'
+  sass (3.6.0) lib/sass/stack.rb:135:in `with_frame'
+  sass (3.6.0) lib/sass/stack.rb:79:in `with_base'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:158:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `map'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `block in visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:157:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:10:in `visit'
+  sass (3.6.0) lib/sass/tree/root_node.rb:36:in `css_tree'
+  sass (3.6.0) lib/sass/tree/root_node.rb:20:in `render'
+  sass (3.6.0) lib/sass/engine.rb:290:in `render'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:74:in `block in call'
+  sprockets (3.7.2) lib/sprockets/utils.rb:171:in `module_include'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:73:in `call'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:30:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:23:in `block in call'
+  sprockets (3.7.2) lib/sprockets/utils.rb:200:in `dfs'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:24:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+  sprockets (3.7.2) lib/sprockets/base.rb:92:in `[]'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:355:in `find_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+  /home/teslazero/Desktop/Projects/policy-manager/app/views/layouts/policy_manager/application.html.erb:5:in `__home_teslazero__esktop__rojects_policy_manager_app_views_layouts_policy_manager_application_html_erb___1647599418394115589_70078131085420'
+  actionview (4.2.10) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.10) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.10) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.10) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.10) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.10) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.2ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (23.2ms)
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:17:31 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPolicyManager::Policy Load (0.2ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered /home/teslazero/Desktop/Projects/policy-manager/app/views/policy_manager/policies/show.html.erb within layouts/policy_manager/application (0.1ms)
+Completed 200 OK in 24ms (Views: 23.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/policy_manager/application.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2018-10-31 15:17:31 +0100
+
+
+Started GET "/assets/policy_manager/policies.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for 127.0.0.1 at 2018-10-31 15:17:31 +0100
+
+
+Started GET "/assets/policy_manager/application.self-8f06a73c35179188914ab50e057157639fce1401c1cdca640ac9cec33746fc5b.js?body=1" for 127.0.0.1 at 2018-10-31 15:17:31 +0100
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:19:06 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered /home/teslazero/Desktop/Projects/policy-manager/app/views/policy_manager/policies/show.html.erb within layouts/policy_manager/application (0.0ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.1ms)
+
+ActionView::Template::Error (File to import not found or unreadable: bootstrap.
+Load paths:
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/stylesheets
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/stylesheets):
+    2: <html>
+    3: <head>
+    4:   <title>PolicyManager</title>
+    5:   <%= stylesheet_link_tag "policy_manager/application", media: "all" %>
+    6:   <%= javascript_include_tag "policy_manager/application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/stylesheets/policy_manager/application.scss:1
+  sass (3.6.0) lib/sass/tree/import_node.rb:67:in `rescue in import'
+  sass (3.6.0) lib/sass/tree/import_node.rb:45:in `import'
+  sass (3.6.0) lib/sass/tree/import_node.rb:28:in `imported_file'
+  sass (3.6.0) lib/sass/tree/import_node.rb:37:in `css_import?'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:310:in `visit_import'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+  sass (3.6.0) lib/sass/stack.rb:79:in `block in with_base'
+  sass (3.6.0) lib/sass/stack.rb:135:in `with_frame'
+  sass (3.6.0) lib/sass/stack.rb:79:in `with_base'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:158:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `map'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:52:in `visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `block in visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+  sass (3.6.0) lib/sass/tree/visitors/base.rb:36:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:157:in `visit'
+  sass (3.6.0) lib/sass/tree/visitors/perform.rb:10:in `visit'
+  sass (3.6.0) lib/sass/tree/root_node.rb:36:in `css_tree'
+  sass (3.6.0) lib/sass/tree/root_node.rb:20:in `render'
+  sass (3.6.0) lib/sass/engine.rb:290:in `render'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:74:in `block in call'
+  sprockets (3.7.2) lib/sprockets/utils.rb:171:in `module_include'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:73:in `call'
+  sprockets (3.7.2) lib/sprockets/sass_processor.rb:30:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:23:in `block in call'
+  sprockets (3.7.2) lib/sprockets/utils.rb:200:in `dfs'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:24:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+  sprockets (3.7.2) lib/sprockets/base.rb:92:in `[]'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:355:in `find_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+  /home/teslazero/Desktop/Projects/policy-manager/app/views/layouts/policy_manager/application.html.erb:5:in `__home_teslazero__esktop__rojects_policy_manager_app_views_layouts_policy_manager_application_html_erb___1647599418394115589_70078131085420'
+  actionview (4.2.10) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.10) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.10) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.10) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.10) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.10) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (21.9ms)
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1[0m  [["policy_type", "cookie"], ["version", 1]]
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPolicyManager::Policy Exists (0.1ms)[0m  SELECT  1 AS one FROM "policy_manager_policies" WHERE "policy_manager_policies"."version" = 1 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 2]]
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:19:20 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered /home/teslazero/Desktop/Projects/policy-manager/app/views/policy_manager/policies/show.html.erb within layouts/policy_manager/application (1.0ms)
+Completed 500 Internal Server Error in 4615ms (ActiveRecord: 0.1ms)
+
+ActionView::Template::Error (couldn't find file 'jquery3' with type 'application/javascript'
+Checked in these paths: 
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/test/dummy/app/assets/stylesheets
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/images
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/javascripts
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/stylesheets
+  /home/teslazero/.rvm/gems/ruby-2.2.2/gems/popper_js-1.14.3/assets/javascripts
+  /home/teslazero/.rvm/gems/ruby-2.2.2/gems/bootstrap-4.1.3/assets/stylesheets
+  /home/teslazero/.rvm/gems/ruby-2.2.2/gems/bootstrap-4.1.3/assets/javascripts):
+    2: <html>
+    3: <head>
+    4:   <title>PolicyManager</title>
+    5:   <%= stylesheet_link_tag "policy_manager/application", media: "all" %>
+    6:   <%= javascript_include_tag "policy_manager/application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+  /home/teslazero/Desktop/Projects/policy-manager/app/assets/javascripts/policy_manager/application.js:14
+  sprockets (3.7.2) lib/sprockets/resolve.rb:65:in `resolve!'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:399:in `resolve'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:207:in `process_require_directive'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:180:in `block in process_directives'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:178:in `each'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:178:in `process_directives'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:83:in `_call'
+  sprockets (3.7.2) lib/sprockets/directive_processor.rb:68:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:23:in `block in call'
+  sprockets (3.7.2) lib/sprockets/utils.rb:200:in `dfs'
+  sprockets (3.7.2) lib/sprockets/bundle.rb:24:in `call'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:75:in `call_processor'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:57:in `block in call_processors'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `reverse_each'
+  sprockets (3.7.2) lib/sprockets/processor_utils.rb:56:in `call_processors'
+  sprockets (3.7.2) lib/sprockets/loader.rb:134:in `load_from_unloaded'
+  sprockets (3.7.2) lib/sprockets/loader.rb:60:in `block in load'
+  sprockets (3.7.2) lib/sprockets/loader.rb:317:in `fetch_asset_from_dependency_cache'
+  sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `yield'
+  sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+  sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+  sprockets (3.7.2) lib/sprockets/base.rb:73:in `find_all_linked_assets'
+  sprockets (3.7.2) lib/sprockets/manifest.rb:142:in `block in find'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:114:in `block (2 levels) in logical_paths'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:228:in `block in stat_tree'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:212:in `block in stat_directory'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:209:in `each'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:209:in `stat_directory'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:227:in `stat_tree'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:231:in `block in stat_tree'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:212:in `block in stat_directory'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:209:in `each'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:209:in `stat_directory'
+  sprockets (3.7.2) lib/sprockets/path_utils.rb:227:in `stat_tree'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:105:in `each'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:105:in `block in logical_paths'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:104:in `each'
+  sprockets (3.7.2) lib/sprockets/legacy.rb:104:in `logical_paths'
+  sprockets (3.7.2) lib/sprockets/manifest.rb:140:in `find'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:50:in `each'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:50:in `map'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:50:in `precompiled_assets'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:35:in `asset_precompiled?'
+  sprockets-rails (3.2.1) lib/sprockets/railtie.rb:251:in `block (3 levels) in <class:Railtie>'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:359:in `call'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:359:in `precompiled?'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:363:in `raise_unless_precompiled_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:348:in `find_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+  sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+  /home/teslazero/Desktop/Projects/policy-manager/app/views/layouts/policy_manager/application.html.erb:5:in `__home_teslazero__esktop__rojects_policy_manager_app_views_layouts_policy_manager_application_html_erb__553286009300409351_69898178741580'
+  actionview (4.2.10) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.10) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.10) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.10) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.10) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.10) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.10) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.10) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.10) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.10) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.10) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.9ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (35.2ms)
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1[0m  [["policy_type", "cookie"], ["version", 1]]
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mPolicyManager::Policy Exists (0.1ms)[0m  SELECT  1 AS one FROM "policy_manager_policies" WHERE "policy_manager_policies"."version" = 1 LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."policy_type" = ? AND "policy_manager_policies"."version" = ?  ORDER BY "policy_manager_policies"."id" ASC LIMIT 1  [["policy_type", "privacy"], ["version", 2]]
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:23:55 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPolicyManager::Policy Load (0.2ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered /home/teslazero/Desktop/Projects/policy-manager/app/views/policy_manager/policies/show.html.erb within layouts/policy_manager/application (0.9ms)
+Completed 200 OK in 3261ms (Views: 3259.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/policy_manager/application.self-79b0d39433950c79a761b0195aed1ab6cbda33bc0cd2fb00536738b1264f59fe.css?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/jquery3.self-5af507e253c37e9c9dcf65064fc3f93795e6e28012780579975a4d709f4074ad.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/scrollspy.self-9c4010d9389b7b27e3247fcbb0cc4425f15d7df2d0d3464b9c3a9022632f1dc8.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/collapse.self-f40766e711b829f346a1d3f6ca132348a77eef7cdfd28732ba8afcf2c996dc89.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/popper.self-23d0e4674571ef619dc97acba7169155cec531ebea3136429568f24ab0755da7.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/util.self-32c933709f03802cab6990dadb15257dcca78c60790311303e1f69319bb5ec09.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/alert.self-6174a81cd2fbcf8bc9949957661638e9716cb0390e0fcf29fafcdc0f2351c58f.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/tooltip.self-b2c5fc72d4e22d1516e9713d3ee1ffa6f92ed11722175e2a9b88c3acbe0bbc09.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/popover.self-3d5b251608f27dbdae33a816e4736ae6e8a8e1729af1fc0c10eb234bf0f494c5.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/dropdown.self-7abc7d81497e5228d193f1151e74cd9f683732d7ab3e9654f714a4d75fbd41c0.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/button.self-5e0c9bfb00dc1db87237215c889765533d8b0744d96538915cff2ac0e29a3825.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/modal.self-711cfe854709180e4c826346dd982c6df3eabc0eab949d2a1560201a139dccfa.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/carousel.self-684b442295b055f9cdba73cb596ffdb733024661042cfaee5637c28350efdd28.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap/tab.self-f8f47356299f63d5a6828b6954f5e92bf82d85370f16410b5ae89d3e1effdd96.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/bootstrap-sprockets.self-636159b35205da4142a43bc02d2849d77d3ac07a0946211585cde15a9c6ff21f.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/assets/policy_manager/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2018-10-31 15:23:59 +0100
+
+
+Started GET "/asd/policies/1" for 127.0.0.1 at 2018-10-31 15:24:36 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPolicyManager::Policy Load (0.1ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered /home/teslazero/Desktop/Projects/policy-manager/app/views/policy_manager/policies/show.html.erb within layouts/policy_manager/application (0.0ms)
+Completed 200 OK in 42ms (Views: 34.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/asd/policies/111" for 127.0.0.1 at 2018-10-31 15:24:39 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"111"}
+  [1m[35mPolicyManager::Policy Load (0.1ms)[0m  SELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1  [["id", 111]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find PolicyManager::Policy with 'id'=111):
+  activerecord (4.2.10) lib/active_record/core.rb:155:in `find'
+  /home/teslazero/Desktop/Projects/policy-manager/app/controllers/policy_manager/policies_controller.rb:13:in `set_policy'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (19.1ms)
+
+
+Started GET "/asd/policies/d" for 127.0.0.1 at 2018-10-31 15:24:42 +0100
+Processing by PolicyManager::PoliciesController#show as HTML
+  Parameters: {"id"=>"d"}
+  [1m[36mPolicyManager::Policy Load (0.2ms)[0m  [1mSELECT  "policy_manager_policies".* FROM "policy_manager_policies" WHERE "policy_manager_policies"."id" = ? LIMIT 1[0m  [["id", 0]]
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find PolicyManager::Policy with 'id'=d):
+  activerecord (4.2.10) lib/active_record/core.rb:155:in `find'
+  /home/teslazero/Desktop/Projects/policy-manager/app/controllers/policy_manager/policies_controller.rb:13:in `set_policy'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:145:in `block in halting_and_conditional'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.10) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.10) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.10) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.10) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.10) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.10) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.10) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.10) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.10) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `public_send'
+  railties (4.2.10) lib/rails/railtie.rb:194:in `method_missing'
+  actionpack (4.2.10) lib/action_dispatch/routing/mapper.rb:51:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.10) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.10) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.10) lib/rack/etag.rb:24:in `call'
+  rack (1.6.10) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.10) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.10) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.10) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.10) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.10) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.10) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.10) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.5ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (17.1ms)
+
+
+Started GET "/asd/policiesdd" for 127.0.0.1 at 2018-10-31 15:24:45 +0100
+
+ActionController::RoutingError (No route matches [GET] "/asd/policiesdd"):
+  actionpack (4.2.10) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.10) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.10) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.10) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.10) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.10) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.10) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.10) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.10) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.10) lib/rails/engine.rb:518:in `call'
+  railties (4.2.10) lib/rails/application.rb:165:in `call'
+  rack (1.6.10) lib/rack/lock.rb:17:in `call'
+  rack (1.6.10) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.10) lib/rack/handler/webrick.rb:88:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/teslazero/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.6ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.3ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/routes/_table.html.erb (7.0ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/teslazero/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.10/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (31.8ms)

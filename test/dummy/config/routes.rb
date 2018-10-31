@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount PolicyManager::Engine => "/policy_manager"
+  mount PolicyManager::Engine => "/asd"
 end
