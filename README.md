@@ -2,34 +2,83 @@
 
 ![policy_manager](https://media.giphy.com/media/14rq7jizqq3oeQ/giphy.gif)
 
+## About this project
+
+PolicyManager was created to comply with the requirements of the GDPR.
+It's currently being developed at Uqido and will be battle-tested on Uqido's projects.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'policy-manager'
+gem 'policy_manager', git: 'git@github.com:Uqido/policy-manager.git'
 ```
 
-And then execute:
+And then execute to install it:
 
-    $ bundle
+    $ bundle install
 
-Or install it yourself as:
+Install and run the needed migrations:
 
-    $ gem install policy-manager
+    $ rake policy_manager:install:migrations
+    $ rake db:migrate
 
 ## Usage
 
-TODO: Usage instructions here
+### Basic config
 
-## Development
+In /config/initializers/policy_manager.rb do:
 
-TODO: Development instructions here
+    PolicyManager::Config.setup do |c|
+      c.logout_url = 'logout_url'
+      c.user_resource = User # defaults to User
+    
+      c.add_policy({
+                     policy_type: PolicyManager::Policy::PolicyTypes::COOKIE,
+                     content: 'your html here',
+                     version: 1,
+                     blocking: false
+                 })
+    
+      c.add_policy({
+                     policy_type: PolicyManager::Policy::PolicyTypes::PRIVACY,
+                     content: 'your html here',
+                     version: 1,
+                     blocking: true
+                 })
+    end
+
+In your app router add the following:
+
+    mount PolicyManager::Engine => "/policies"
+    
+Then add the concern to your `User` model:
+    
+    class User < ApplicationRecord
+      include PolicyManager::Concerns::WithPolicies
+    end
+    
+This will generate some helper methods on the `User` model. For example, with the example above you will
+get the following methods for free:
+
+- `@user.has_consented_cookie?`
+- `@user.has_consented_privacy?`
+- `@user.accept_cookie_policy`
+- `@user.reject_cookie_policy`
+- `@user.accept_privacy_policy`
+- `@user.reject_privacy_policy
+`
+## TODO
+
+- Consents acquisition with modal
+- User Data portability
+- Logs of operations made
+- User Data deletion
 
 ## Contributing
 
-TODO: Contributing instructions here
+To contribute just fork the repository and send a Pull Request. Tests would be nice !
 
 
 ## License

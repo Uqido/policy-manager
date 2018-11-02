@@ -1,4 +1,4 @@
-$:.push File.expand_path("lib", __dir__)
+$:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
 require "policy_manager/version"
@@ -9,12 +9,11 @@ Gem::Specification.new do |s|
   s.version     = PolicyManager::VERSION
   s.authors     = ["Uqido"]
   s.email       = ["teslaruzero@gmail.com"]
-  # s.homepage    = "TODO"
-  s.summary     = %q{A gem to manage your GDPR policies}
-  # s.description = "TODO: Description of PolicyManager."
+  s.summary     = "A gem to manage your GDPR policies"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.2.7"
 
