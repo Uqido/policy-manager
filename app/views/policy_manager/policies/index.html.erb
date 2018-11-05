@@ -1,0 +1,56 @@
+<h2><%= t :available_policies %></h2>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th><%= t('policies.index.version') %></th>
+        <th><%= t('policies.index.type') %></th>
+        <th><%= t('policies.index.blocking') %></th>
+        <th><%= t('policies.index.updated_at') %></th>
+        <th><%= t('policies.index.content') %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @policies.each do |policy| %>
+        <tr>
+          <td><%= policy.version %></td>
+          <td><%= policy.policy_type.capitalize %></td>
+          <td><%= policy.blocking %></td>
+          <td><%= l policy.updated_at, format: '%d/%m/%Y' %></td>
+          <td class="policy-content"><%= policy.to_html %></td>
+          <td>
+            <%=
+              link_to "<i class='fa fa-eye'></i>".html_safe,
+                      policy_path(policy),
+                      class: 'text-primary'
+            %>
+          </td>
+          <td>
+            <%=
+              link_to "<i class='fa fa-edit'></i>".html_safe,
+                      edit_policy_path(policy),
+                      class: 'text-success'
+            %>
+          </td>
+          <td>
+            <%=
+              link_to "<i class='fa fa-trash'></i>".html_safe,
+                      policy_path(policy),
+                      data: { confirm: t('policies.index.confirmation') },
+                      method: :delete,
+                      class: 'text-danger'
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="float-right">
+  <%= link_to t('policies.index.add_policy'), new_policy_path, class: "btn btn-success" %>
+</div>
