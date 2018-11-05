@@ -21,4 +21,8 @@ PolicyManager::Config.setup do |c|
                    version: 2,
                    blocking: true
                })
+
+  c.is_admin_method = -> (user) {
+    user.is_admin?
+  }
 end
