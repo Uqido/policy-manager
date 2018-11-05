@@ -26,6 +26,14 @@ Install and run the needed migrations:
 
 ## Usage
 
+### Layout
+
+In order to use main application layouts it is mandatory to prefix wth `main_app` all the main application paths contained
+inside the layouts. For example `root_path` will become `main_app.root_path`.
+
+This is because otherwise when navigating gem paths it will try to find the main applications paths inside the gem routes
+without (obviously) finding them.
+
 ### Basic config
 
 In /config/initializers/policy_manager.rb do:
@@ -47,6 +55,10 @@ In /config/initializers/policy_manager.rb do:
                      version: 1,
                      blocking: true
                  })
+       
+      c.is_admin_method = -> (user) { 
+        user.admin? || user.superadmin?
+      } 
     end
 
 In your app router add the following:

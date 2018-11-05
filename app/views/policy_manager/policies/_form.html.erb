@@ -1,37 +1,3 @@
-<%# path = @term.persisted? ? category_term_path(params[:category_id], @term) : category_terms_path(params[:category_id]) %>
-
-<%#= form_with(model: term, local: true, url: path ) do |form| %>
-  <%# if term.errors.any? %>
-<!--    <div id="error_explanation">-->
-<!--      <h2><%#= pluralize(term.errors.count, "error") %> <%#= I18n.t("terms_app.terms.new.error") %></h2>-->
-
-<!--      <ul>-->
-      <%# term.errors.full_messages.each do |message| %>
-<!--        <li><%#= message %></li>-->
-      <%# end %>
-<!--      </ul>-->
-<!--    </div>-->
-  <%# end %>
-
-  <%#= form.hidden_field :rule, value: params[:category_id] %>
-  
-<!--  <div class="form-group">-->
-<!--    <label><%#= I18n.t("terms_app.terms.new.state") %></label>-->
-    <%#= form.select :state, PolicyManager::Term.aasm.states.collect{ |state| [I18n.t("terms_app.states.#{state}"), state] }%>
-<!--  </div>-->
-
-<!--  <div class="form-group">-->
-    <%#= form.label I18n.t("terms_app.terms.new.description") %>
-    <%#= form.text_area :description, id: :term_description, class: "form-control" %>
-<!--  </div>-->
-
-  <%#= form.submit class: "btn btn-success", value: I18n.t("terms_app.misc.save") %>
-<%# end %>
-
-<!--<script>-->
-<!--var simplemde = new SimpleMDE({ element: $("#term_description")[0] });-->
-<!--</script>-->
-
 <%= form_for @policy do |f| %>
   <% if @policy.errors.any? %>
     <div id="error_explanation">
@@ -52,12 +18,12 @@
     </div>
 
     <div class="form-group col-12 col-md-6">
-      <label  for="policy_version"><%= t('policies.new.version') %></label>
+      <label for="policy_version"><%= t('policies.new.version') %></label>
       <%= f.number_field :version, class: 'form-control' %>
     </div>
 
-    <div class="form-group col-12">
-      <label  for="policy_text_area"><%= t('policies.new.content') %></label>
+    <div class="form-group col-12 col-sm-12">
+      <label for="policy_text_area"><%= t('policies.new.content') %></label>
       <%= f.text_area :content, class: 'form-control'%>
     </div>
   </div>
