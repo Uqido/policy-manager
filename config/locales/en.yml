@@ -31,5 +31,7 @@ en:
     edit:
       edit_policy: Edit Policy
       policy_updated: Policy Updated!
-
-
+  user_policies:
+    policy: Policy
+    action: Accept/Reject
+    last_update: Last Update

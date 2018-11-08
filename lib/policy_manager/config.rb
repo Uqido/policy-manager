@@ -26,7 +26,7 @@ module PolicyManager
           policy.blocking     = opts[:blocking]
         end
       rescue ActiveRecord::StatementInvalid => e
-        PolicyManager::PolicyHelper.errors e
+        PolicyManager::Policy.migration_missing_errors e
       end
     end
 

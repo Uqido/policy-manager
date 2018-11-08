@@ -31,5 +31,5 @@ it:
     edit:
       edit_policy: Modifica Policy
       policy_updated: Policy Aggiornata!
-
+  user_policies:
 
