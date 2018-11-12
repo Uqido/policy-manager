@@ -32,4 +32,11 @@ it:
       edit_policy: Modifica Policy
       policy_updated: Policy Aggiornata!
   user_policies:
+    policy: Policy
+    action: Accetta/Rifiuta
+    last_update: Ultimo Aggiornamento
+    blocking: Bloccante
+    yes: si
+    no: no
+
 

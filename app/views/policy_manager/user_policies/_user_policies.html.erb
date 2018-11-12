@@ -1,7 +1,8 @@
 <div class="table-responsive">
-    <table class="table table-striped table-sm text-center">
+    <table class="table table-striped table-sm">
       <thead>
       <tr>
+        <th><%= t('user_policies.blocking') %></th>
         <th><%= t('user_policies.policy') %></th>
         <th><%= t('user_policies.last_update') %></th>
         <th><%= t('user_policies.action') %></th>
@@ -11,6 +12,7 @@
       <tbody>
       <% PolicyManager::Policy.signable_policies.each do |policy| %>
         <tr>
+          <td><%= policy.blocking ? t('user_policies.yes') : t('user_policies.no') %></td>
           <td><%= link_to policy.policy_type.capitalize, policy_manager.policy_path(policy) %></td>
           <td><%= l policy.updated_at, format: '%d/%m/%Y' %></td>
           <td>

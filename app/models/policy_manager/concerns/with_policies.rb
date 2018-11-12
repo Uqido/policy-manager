@@ -36,11 +36,18 @@ module PolicyManager
               end
             end
           end
+
+          def has_pending_blocking_policies?
+            Policy.signable_policies.select{|p| p.blocking}.each do |policy|
+              return true unless send("has_consented_#{policy.policy_type}?")
+            end
+
+            false
+          end
         rescue ActiveRecord::StatementInvalid => e
           Policy.migration_missing_errors e
         end
       end
-
     end
   end
 end

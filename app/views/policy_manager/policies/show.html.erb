@@ -16,7 +16,7 @@
     </span>
     </div>
     <div class="float-right">
-      <%= link_to t('policies.show.back'), policies_path, class: "btn btn-primary" %>
+      <%= link_to t('policies.show.back'), :back, class: "btn btn-primary" %>
       <% if @edit_mode %>
         <%= link_to t('policies.show.edit'),
                     edit_policy_path(@policy),
