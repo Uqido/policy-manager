@@ -38,5 +38,12 @@ it:
     blocking: Bloccante
     yes: si
     no: no
+  portability_requests:
+    confirmation: Elaborazione dei dati cominciata!
+    requests: Le tue richieste
+    state: Stato
+    created_at: Data Richiesta
+    updated_at: Ultimo Aggiornamento
+    new: Richiedi Dati
 
 

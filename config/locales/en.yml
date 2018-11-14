@@ -38,3 +38,11 @@ en:
     blocking: Blocking
     yes: yes
     no: no
+  portability_requests:
+    confirmation: Your data is being processed!
+    requests: Your Portability Requests
+    state: State
+    created_at: Request Date
+    updated_at: Last Update
+    new: Request Data
+
