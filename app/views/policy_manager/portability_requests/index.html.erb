@@ -12,13 +12,13 @@
     </thead>
 
     <tbody>
-    <% @portability_requests.each do |portability_requests| %>
+    <% @portability_requests.each do |portability_request| %>
       <tr>
-        <td><%= portability_requests.state %></td>
-        <td><%= l portability_requests.created_at, format: '%d/%m/%Y'  %></td>
-        <td><%= l portability_requests.updated_at, format: '%d/%m/%Y' %></td>
+        <td><%= portability_request.state %></td>
+        <td><%= l portability_request.created_at, format: "%d/%m/%Y #{t('portability_requests.at')} %H:%M" %></td>
+        <td><%= l portability_request.updated_at, format: "%d/%m/%Y #{t('portability_requests.at')} %H:%M" %></td>
         <td>
-          <%= link_to "<i class='fa fa-download'></i>".html_safe, portability_requests.attachment %>
+          <%= link_to "<i class='fa fa-download'></i>".html_safe, attachment_portability_request_path(portability_request) %>
         </td>
       </tr>
     <% end %>

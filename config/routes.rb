@@ -3,5 +3,9 @@ PolicyManager::Engine.routes.draw do
 
   resources :user_policies, only: [:create, :update]
 
-  resources :portability_requests, only: [:index, :create]
+  resources :portability_requests, only: [:index, :create] do
+    member do
+      get :attachment
+    end
+  end
 end

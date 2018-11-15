@@ -4,7 +4,8 @@ module PolicyManager
     mattr_accessor :logout_url,
                    :user_resource,
                    :admin_user_resource,
-                   :is_admin_method
+                   :is_admin_method,
+                   :portability_map
 
 
     def self.setup
@@ -13,6 +14,7 @@ module PolicyManager
       # sets this defaults after configuration
       @@user_resource ||= User
       @@admin_user_resource ||= User
+      @@portability_map ||= {}
 
       self
     end
