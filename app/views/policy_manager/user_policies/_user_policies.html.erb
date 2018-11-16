@@ -13,7 +13,7 @@
     <% PolicyManager::Policy.signable_policies.each do |policy| %>
       <tr>
         <td><%= policy.blocking ? t('user_policies.yes') : t('user_policies.no') %></td>
-        <td><%= link_to policy.policy_type.capitalize, policy_manager.policy_path(policy) %></td>
+        <td><%= link_to policy.policy_type.capitalize, policy_manager.policy_path(policy), target: '_blank' %></td>
         <td><%= l policy.updated_at, format: '%d/%m/%Y' %></td>
         <td>
           <div class="form-check">

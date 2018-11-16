@@ -27,7 +27,7 @@ module PolicyManager
 
     def self.migration_missing_errors(e)
       puts '-------------------------------------------------------------------------------------------'
-      puts 'Remember to run rake policy_manager:generate_migrations and to run the generated migrations'
+      puts 'Remember to run rake policy_manager:install:migrations and to run the generated migrations'
       puts '-------------------------------------------------------------------------------------------'
       puts "Exception Class: #{e.class.name}"
       puts "Exception Message: #{e.message}"
