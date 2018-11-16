@@ -17,23 +17,17 @@ module PolicyManager
             end
 
             define_method :"accept_#{policy.policy_type}_policy" do
-              user_policy = UserPolicy.find_by(policy_id: policy.id, user_id: self.id)
+              user_policy = UserPolicy.find_or_initialize_by(policy_id: policy.id, user_id: self.id)
 
-              if user_policy
-                user_policy.update(accepted: true)
-              else
-                UserPolicy.create(policy_id: policy.id, user_id: self.id, accepted: true)
-              end
+              user_policy.accepted = true
+              user_policy.save
             end
 
             define_method :"reject_#{policy.policy_type}_policy" do
-              user_policy = UserPolicy.find_by(policy_id: policy.id, user_id: self.id)
+              user_policy = UserPolicy.find_or_initialize_by(policy_id: policy.id, user_id: self.id)
 
-              if user_policy
-                user_policy.update(accepted: false) if user_policy.accepted
-              else
-                UserPolicy.create(policy_id: policy.id, user_id: self.id, accepted: false)
-              end
+              user_policy.accepted = false
+              user_policy.save
             end
           end
 
