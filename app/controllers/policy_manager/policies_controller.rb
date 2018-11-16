@@ -1,4 +1,4 @@
-require_dependency "policy_manager/application_controller"
+require_dependency 'policy_manager/application_controller'
 
 module PolicyManager
   class PoliciesController < ApplicationController
@@ -17,8 +17,7 @@ module PolicyManager
       @policy = Policy.new
     end
 
-    def edit
-    end
+    def edit; end
 
     def create
       @policy = Policy.new(policy_params)

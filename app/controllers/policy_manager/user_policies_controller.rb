@@ -1,4 +1,4 @@
-require_dependency "policy_manager/application_controller"
+require_dependency 'policy_manager/application_controller'
 
 module PolicyManager
   class UserPoliciesController < ApplicationController

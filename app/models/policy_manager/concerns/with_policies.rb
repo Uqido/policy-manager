@@ -5,8 +5,8 @@ module PolicyManager
 
       included do
         begin
-          has_many :user_policies, class_name: "PolicyManager::UserPolicy", autosave: true
-          has_many :policies, through: :user_policies, class_name: "PolicyManager::Policy"
+          has_many :user_policies, class_name: 'PolicyManager::UserPolicy', autosave: true
+          has_many :policies, through: :user_policies, class_name: 'PolicyManager::Policy'
 
           Policy.signable_policies.each do |policy|
 

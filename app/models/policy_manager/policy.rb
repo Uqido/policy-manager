@@ -1,10 +1,9 @@
 module PolicyManager
   class Policy < ApplicationRecord
-
     module PolicyTypes
-      COOKIE  = 'cookie'
-      PRIVACY = 'privacy'
-      TYPES = ['cookie', 'privacy']
+      COOKIE  = 'cookie'.freeze
+      PRIVACY = 'privacy'.freeze
+      TYPES = %w[cookie privacy].freeze
     end
 
     validates_presence_of :policy_type
@@ -30,8 +29,8 @@ module PolicyManager
       puts '-------------------------------------------------------------------------------------------'
       puts 'Remember to run rake policy_manager:generate_migrations and to run the generated migrations'
       puts '-------------------------------------------------------------------------------------------'
-      puts "Exception Class: #{ e.class.name }"
-      puts "Exception Message: #{ e.message }"
+      puts "Exception Class: #{e.class.name}"
+      puts "Exception Message: #{e.message}"
     end
   end
 end
