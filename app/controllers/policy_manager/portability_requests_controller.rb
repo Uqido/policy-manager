@@ -51,7 +51,7 @@ module PolicyManager
     def attachment
       send_file @portability_request.attachment.path,
                 filename: @portability_request.attachment_file_name,
-                type: 'plain/text',
+                type: @portability_request.attachment_content_type,
                 disposition: 'attachment'
     end
 

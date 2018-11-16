@@ -6,8 +6,10 @@ class CreatePolicyManagerPortabilityRequests < ActiveRecord::Migration
       t.string :attachment
       t.string :attachment_file_name
       t.string :attachment_file_size
-      t.datetime :attachment_content_type
+      t.string :attachment_content_type
       t.string :attachment_file_content_type
+      t.datetime :job_completed_at
+      t.datetime :job_failed_at
 
       t.timestamps
     end
