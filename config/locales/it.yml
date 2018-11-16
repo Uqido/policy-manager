@@ -1,0 +1,35 @@
+it:
+  app_title: Policy Manager
+  policies:
+    index:
+      available_policies: Policy Disponibili
+      add_policy: Aggiungi Policy
+      type: Tipo Policy
+      version: Versione
+      blocking: Policy Obbligatoria
+      updated_at: Ultimo Aggiornamento
+      content: Contenuto
+      show: Mostra
+      edit: Modifica
+      destroy: Cancella
+      confirmation: Sei sicuro di voler cancellare?
+      policy_destroyed: Policy Cancellata!
+    show:
+      title: Policy
+      last_update: Ultimo Aggiornamento
+      back: Indietro
+      edit: Modifica
+    new:
+      new_policy: Nuova Policy
+      policy_type: Tipo Policy
+      select_policy_type: seleziona tipo policy ...
+      create_policy: Aggiungi Policy
+      policy_created: Policy Creata!
+      version: Versione
+      blocking: Policy Obbligatoria
+      content: Contenuto Policy
+    edit:
+      edit_policy: Modifica Policy
+      policy_updated: Policy Aggiornata!
+
+
