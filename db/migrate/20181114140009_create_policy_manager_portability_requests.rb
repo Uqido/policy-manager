@@ -1,8 +1,7 @@
 class CreatePolicyManagerPortabilityRequests < ActiveRecord::Migration
   def change
     create_table :policy_manager_portability_requests do |t|
-      t.string :state, index: true
-      t.integer :user_id
+      t.integer :user_id, index: true
       t.string :attachment
       t.string :attachment_file_name
       t.string :attachment_file_size

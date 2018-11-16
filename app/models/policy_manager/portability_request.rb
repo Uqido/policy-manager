@@ -3,6 +3,7 @@ require 'paperclip'
 module PolicyManager
   class PortabilityRequest < ActiveRecord::Base
     include Paperclip::Glue
+    include PolicyManager::Concerns::WorksWithJob
 
     belongs_to :user, class_name: Config.user_resource.to_s
 

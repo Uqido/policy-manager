@@ -40,11 +40,17 @@ it:
     no: no
   portability_requests:
     confirmation: Elaborazione dei dati cominciata!
+    error: Errore! Si prega di riprovare più tardi
     requests: Le tue richieste
     state: Stato
     created_at: Data Richiesta
     updated_at: Ultimo Aggiornamento
+    completed_at: Completato
+    failed_at: Fallito
     new: Richiedi Dati
     at: alle
+    processing: Processing
+    completed: Completed
+    failed: Failed
 
 

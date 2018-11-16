@@ -40,10 +40,16 @@ en:
     no: no
   portability_requests:
     confirmation: Your data is being processed!
+    error: Error! Please try again later
     requests: Your Portability Requests
     state: Status
-    created_at: Request Date
+    created_at: Requested
     updated_at: Last Update
+    completed_at: Completed
+    failed_at: Failed
     new: Request Data
     at: at
+    processing: Processing
+    completed: Completed
+    failed: Failed
 
