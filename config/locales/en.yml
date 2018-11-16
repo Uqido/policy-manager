@@ -1,0 +1,35 @@
+en:
+  app_title: Policy Manager
+  policies:
+    index:
+      available_policies: Available Policies
+      add_policy: Add Policy
+      type: Policy Type
+      version: Version
+      blocking: Mandatory Policy
+      updated_at: Last Update
+      content: Content
+      show: Show
+      edit: Edit
+      destroy: Delete
+      confirmation: Are you sure?
+      policy_destroyed: Policy Destroyed!
+    show:
+      title: Policy
+      last_update: Last Update
+      back: Back
+      edit: Edit
+    new:
+      new_policy: New Policy
+      policy_type: Policy Type
+      select_policy_type: select policy type ...
+      create_policy: Add Policy
+      policy_created: Policy Created!
+      version: Version
+      blocking: Mandatory Policy
+      content: Policy Content
+    edit:
+      edit_policy: Edit Policy
+      policy_updated: Policy Updated!
+
+

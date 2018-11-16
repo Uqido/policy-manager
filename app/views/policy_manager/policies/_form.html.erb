@@ -1,0 +1,52 @@
+<%= form_for @policy do |f| %>
+  <% if @policy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@policy.errors.count, "error") %></h2>
+
+      <ul>
+        <% @policy.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="form-group col-12 col-md-6">
+      <label for="policy_policy_type"><%= t('policies.new.policy_type') %></label>
+      <%= f.select :policy_type, PolicyManager::Policy::PolicyTypes::TYPES, { include_blank: t('policies.new.select_policy_type') }, class: 'form-control'  %>
+    </div>
+
+    <div class="form-group col-12 col-md-6">
+      <label for="policy_version"><%= t('policies.new.version') %></label>
+      <%= f.number_field :version, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-12 col-sm-12">
+      <label for="policy_text_area"><%= t('policies.new.content') %></label>
+      <%= f.text_area :content, class: 'form-control'%>
+    </div>
+  </div>
+
+  <div class="pull-left">
+    <div class="form-group">
+      <%= f.check_box :blocking %>
+      <label for="policy_blocking" class="form-check-label"><%= t('policies.new.blocking') %></label>
+    </div>
+  </div>
+
+  <div class="pull-right">
+    <%= link_to t('policies.show.back'), policies_path, class: "btn btn-primary" %>
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+
+<% end %>
+
+<%= content_for :javascript do  %>
+  <script>
+      $(document).ready(function(){
+          $("#policy_content").wysihtml5({ toolbar:{ "fa": true } });
+      });
+  </script>
+<% end %>
+
