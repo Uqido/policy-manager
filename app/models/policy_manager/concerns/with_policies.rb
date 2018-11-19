@@ -11,7 +11,7 @@ module PolicyManager
           Policy.signable_policies.each do |policy|
 
             define_method :"has_consented_#{policy.policy_type}?" do
-              user_policy = UserPolicy.find_by(policy_id: policy.id)
+              user_policy = UserPolicy.find_by(policy_id: policy.id, user_id: self.id)
 
               user_policy ? user_policy.accepted : false
             end
