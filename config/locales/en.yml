@@ -38,3 +38,5 @@ en:
     blocking: Blocking
     yes: yes
     no: no
+    manage: Manage Policies,
+    blocking_consent: This consent is mandatory in order to use the platform. If not accepted it won't be possible to proceed

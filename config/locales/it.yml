@@ -38,5 +38,7 @@ it:
     blocking: Bloccante
     yes: si
     no: no
+    manage: Gestisci Policy
+    blocking_consent: Questo consenso è obbligatorio per procedere con l'utilizzo della piattaforma, se non confermato, non sarà più possibile procedere
 
 

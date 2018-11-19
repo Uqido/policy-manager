@@ -4,6 +4,8 @@ module PolicyManager
   class UserPoliciesController < ApplicationController
     before_action :set_user_policy, only: [:update]
 
+    def index; end
+
     def create
       UserPolicy.create(user_policy_params)
 
@@ -17,6 +19,7 @@ module PolicyManager
     end
 
     private
+
       def set_user_policy
         @user_policy = UserPolicy.find(params[:id])
       end
