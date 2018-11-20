@@ -1,8 +1,13 @@
-require_dependency "policy_manager/application_controller"
+require_dependency 'policy_manager/application_controller'
 
 module PolicyManager
   class UserPoliciesController < ApplicationController
+    before_action :user_authenticated?
     before_action :set_user_policy, only: [:update]
+
+    def index
+      render :index, layout: false
+    end
 
     def create
       UserPolicy.create(user_policy_params)
@@ -17,6 +22,7 @@ module PolicyManager
     end
 
     private
+
       def set_user_policy
         @user_policy = UserPolicy.find(params[:id])
       end
