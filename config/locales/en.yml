@@ -14,6 +14,10 @@ en:
       destroy: Delete
       confirmation: Are you sure?
       policy_destroyed: Policy Destroyed!
+      registration_check: By clicking Sign Up, you agree to our %{terms}. Learn how we collect, use and share your data in our %{privacy} and how we use cookies and similar technology in our %{cookie}.
+      cookie: Cookie policy
+      privacy: Privacy policy
+      terms_of_service: Terms and conditions
     show:
       title: Policy
       last_update: Last Update

@@ -2,6 +2,7 @@ require_dependency 'policy_manager/application_controller'
 
 module PolicyManager
   class UserPoliciesController < ApplicationController
+    before_action :user_authenticated?
     before_action :set_user_policy, only: [:update]
 
     def index

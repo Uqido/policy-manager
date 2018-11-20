@@ -3,7 +3,8 @@ module PolicyManager
     module PolicyTypes
       COOKIE  = 'cookie'.freeze
       PRIVACY = 'privacy'.freeze
-      TYPES = %w[cookie privacy].freeze
+      TOS = 'terms_of_service'.freeze
+      TYPES = %w[cookie privacy terms_of_service].freeze
     end
 
     validates_presence_of :policy_type
@@ -12,6 +13,8 @@ module PolicyManager
 
     validates_uniqueness_of :version, scope: :policy_type
 
+    scope :newer, ->(type) { where(policy_type: type).order(version: :desc).first }
+
     def to_html
       content.html_safe
     end
@@ -19,7 +22,7 @@ module PolicyManager
     def self.signable_policies
       result = []
       Policy.uniq.pluck(:policy_type).each do |policy_type|
-        result << Policy.where(policy_type: policy_type).order(version: :desc).first
+        result << Policy.newer(policy_type)
       end
 
       result
