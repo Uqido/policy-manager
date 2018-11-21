@@ -7,16 +7,26 @@ module PolicyManager
       user = Config.user_resource.find(user_id)
       portability_request = PortabilityRequest.find(portability_request_id)
 
-      Config.portability_map.each_key do |key|
-        result[key.to_s] = []
-        user.send(key).each do |elem|
-          element = {}
+      Config.portability_map.each_with_index do |key, index|
+        case key
+        when Symbol
+          result[key.to_s] = user.send(key)
+        when Hash
+          key.each_key do |relation|
+            result[relation.to_s] = []
 
-          Config.portability_map[key].each do |field|
-            element[field.to_s] = elem.send(field)
+            user.send(relation).each do |elem|
+              element = {}
+
+              Config.portability_map[index][relation].each do |field|
+                element[field.to_s] = elem.send(field)
+              end
+
+              result[relation.to_s] << element
+            end
           end
-
-          result[key.to_s] << element
+        else
+          result[key.to_s] = ''
         end
       end
 
@@ -33,7 +43,6 @@ module PolicyManager
       portability_request.mark_as_complete
 
       File.delete(file_name)
-
     rescue StandardError
       portability_request.mark_as_failed
     end

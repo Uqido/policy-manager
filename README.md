@@ -59,6 +59,11 @@ In /config/initializers/policy_manager.rb do:
       c.is_admin_method = -> (user) { 
         user.admin? || user.superadmin?
       } 
+      
+      c.portability_map = [
+        :email,
+        articles: [:title, :subtitle, :description]
+      ]
     end
 
 In your app router add the following:
@@ -87,10 +92,11 @@ If you want to use PolicyManager helpers within you application you have to
 import them in the **ApplicationController**: 
 
 - ` helper PolicyManager::UserPoliciesHelper `
+- ` helper PolicyManager::PoliciesHelper `
 ## TODO
 
 - [x] Consents acquisition with modal
-- [ ] User Data portability
+- [x] User Data portability
 - [ ] Logs of operations made
 - [ ] User Data deletion
 

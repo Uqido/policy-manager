@@ -10,9 +10,11 @@ module PolicyManager
     end
 
     def call
-      return false unless portability_request.save
+      ActiveRecord::Base.transaction do
+        portability_request.save!
 
-      ExporterJob.perform_later user.id, portability_request.id
+        ExporterJob.perform_later user.id, portability_request.id
+      end
     end
   end
 end

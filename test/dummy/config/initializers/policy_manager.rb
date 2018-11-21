@@ -26,7 +26,8 @@ PolicyManager::Config.setup do |c|
     user.is_admin?
   }
 
-  c.portability_map = {
+  c.portability_map = [
+    :email,
     articles: [:title, :subtitle, :description]
-  }
+  ]
 end

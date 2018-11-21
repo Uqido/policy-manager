@@ -30,7 +30,7 @@
           <% end %>
         </td>
         <td>
-          <% if portability_request.attachment %>
+          <% if portability_request.attachment.exists? %>
             <%= link_to "<i class='fa fa-download'></i>".html_safe, attachment_portability_request_path(portability_request) %>
           <% end %>
         </td>
