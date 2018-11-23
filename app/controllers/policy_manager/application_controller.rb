@@ -1,6 +1,5 @@
 module PolicyManager
   class ApplicationController < ::ApplicationController # inherits from the main application controller
-    before_action :user_authenticated?
 
     def allow_admins
       render file: 'policy_manager/401.erb', status: :unauthorized unless Config.is_admin?(current_user)

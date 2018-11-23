@@ -79,14 +79,20 @@ get the following methods for free:
 - `@user.accept_cookie_policy`
 - `@user.reject_cookie_policy`
 - `@user.accept_privacy_policy`
-- `@user.reject_privacy_policy
-`
+- `@user.reject_privacy_policy`
+
+### Helpers
+
+If you want to use PolicyManager helpers within you application you have to 
+import them in the **ApplicationController**: 
+
+- ` helper PolicyManager::UserPoliciesHelper `
 ## TODO
 
-- Consents acquisition with modal
-- User Data portability
-- Logs of operations made
-- User Data deletion
+- [x] Consents acquisition with modal
+- [ ] User Data portability
+- [ ] Logs of operations made
+- [ ] User Data deletion
 
 ## Contributing
 

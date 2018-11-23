@@ -1,11 +1,18 @@
-require_dependency "policy_manager/application_controller"
+require_dependency 'policy_manager/application_controller'
 
 module PolicyManager
   class PoliciesController < ApplicationController
+    before_action :user_authenticated?, except: [:show]
+    before_action :allow_admins, except: [:show]
     before_action :set_policy, only: [:show, :edit, :update, :destroy]
-    before_action :allow_admins
 
     def show
+      unless current_user
+        render :show, layout: 'policy_manager/application'
+        return
+      end
+
+      @edit_mode = Config.is_admin? current_user
     end
 
     def index
@@ -16,8 +23,7 @@ module PolicyManager
       @policy = Policy.new
     end
 
-    def edit
-    end
+    def edit; end
 
     def create
       @policy = Policy.new(policy_params)

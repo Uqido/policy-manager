@@ -1,0 +1,46 @@
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th><%= t('user_policies.policy') %></th>
+      <th><%= t('user_policies.last_update') %></th>
+      <th><%= t('user_policies.action') %></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% PolicyManager::Policy.signable_policies.each do |policy| %>
+      <tr>
+        <td>
+          <%= link_to policy.policy_type.capitalize, policy_manager.policy_path(policy), target: '_blank' %>
+          <%= policy.blocking ? '*' : '' %>
+        </td>
+        <td><%= l policy.updated_at, format: '%d/%m/%Y' %></td>
+        <td>
+          <div class="form-check">
+            <%
+              user_policy = PolicyManager::UserPolicy.where(user: current_user, policy: policy)
+                  .first_or_initialize
+            %>
+            <%= form_for [policy_manager, user_policy], remote: true do |f| %>
+              <%= f.hidden_field :policy_id %>
+              <%= f.check_box :accepted, id: "user-policy-#{policy.id}" %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <p class="text-muted">
+    * <%= t('user_policies.blocking_consent') %>
+  </p>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("[id^=user-policy-]").on('change', function(event) {
+            $("#" + event.target.id).closest("form").submit();
+        });
+    });
+</script>

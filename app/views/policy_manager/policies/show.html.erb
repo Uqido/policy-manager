@@ -1,5 +1,5 @@
 <h2>
-  <%= @policy.policy_type.capitalize %> <%= t('policies.show.title') %>
+  <%= t("policies.index.#{@policy.policy_type}")%>
 </h2>
 
 <div class="card">
@@ -16,8 +16,13 @@
     </span>
     </div>
     <div class="float-right">
-      <%= link_to t('policies.show.back'), policies_path, class: "btn btn-primary" %>
-      <%= link_to t('policies.show.edit'), edit_policy_path(@policy), class: "btn btn-success" %>
+      <% if @edit_mode %>
+        <%= link_to t('policies.show.back'), :back, class: "btn btn-primary" %>
+        <%= link_to t('policies.show.edit'),
+                    edit_policy_path(@policy),
+                    class: "btn btn-success"
+        %>
+      <% end %>
     </div>
 
   </div>
