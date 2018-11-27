@@ -13,7 +13,7 @@ module PolicyManager
       def log_user_policies
         Log.create(
           log_type: Log::LogTypes::INFO,
-          description: "[UserPolicy] User #{self.user_id + (self.accepted ? ' accepted' : ' rejected ') + self.policy_type} policy (#{self.policy.id})",
+          description: "[UserPolicy] User #{self.user_id.to_s + (self.accepted ? ' accepted' : ' rejected ') + self.policy.policy_type} policy (#{self.policy.id})",
           logable: self,
           user_id: self.user_id
         )
