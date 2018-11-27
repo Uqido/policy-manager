@@ -7,6 +7,7 @@ module PolicyManager
         begin
           has_many :user_policies, class_name: 'PolicyManager::UserPolicy', autosave: true
           has_many :policies, through: :user_policies, class_name: 'PolicyManager::Policy'
+          has_many :logs, class_name: 'PolicyManager::Log'
 
           Policy.signable_policies.each do |policy|
 

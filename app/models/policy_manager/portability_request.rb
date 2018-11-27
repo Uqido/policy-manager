@@ -6,6 +6,9 @@ module PolicyManager
     include PolicyManager::Concerns::WorksWithJob
 
     belongs_to :user, class_name: Config.user_resource.to_s
+    has_many :logs, as: :logable
+
+    after_create -> { log_portability_requests(PolicyManager::Concerns::WorksWithJob::JobStatues::PROCESSING) }
 
     has_attached_file :attachment,
                       path: ':rails_root/private/policy_manager/portability_requests/:id/:basename.:extension',
