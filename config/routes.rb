@@ -8,4 +8,6 @@ PolicyManager::Engine.routes.draw do
       get :attachment
     end
   end
+
+  resources :logs, only: [:index]
 end

@@ -6,7 +6,7 @@ module PolicyManager
     before_action :set_portability_request, only: [:attachment]
 
     def index
-      @portability_requests = PortabilityRequest.order(created_at: :desc).of_user current_user
+      @portability_requests = PortabilityRequest.order(created_at: :desc).of_user(current_user).page(params[:page])
     end
 
     def create

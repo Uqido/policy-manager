@@ -1,0 +1,31 @@
+<h2><%= t('logs.title')%></h2>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= t('logs.type') %></th>
+      <th><%= t('logs.entity') %></th>
+      <th><%= t('logs.user') %></th>
+      <th><%= t('logs.description') %></th>
+      <th><%= t('logs.created_at') %></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= log.id %></td>
+        <td><%= log.log_type.capitalize %></td>
+        <td><%= log.logable_type %></td>
+        <td><%= log.user_id %></td>
+        <td><%= log.description %></td>
+        <td><%= log.created_at %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @logs %>
