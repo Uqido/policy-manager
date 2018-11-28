@@ -21,7 +21,7 @@
         <td><%= log.logable_type %></td>
         <td><%= log.user_id %></td>
         <td><%= log.description %></td>
-        <td><%= log.created_at %></td>
+        <td><%= l log.created_at, format: "%d/%m/%Y #{t('portability_requests.at')} %H:%M" %></td>
       </tr>
     <% end %>
     </tbody>
