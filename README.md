@@ -97,7 +97,7 @@ import them in the **ApplicationController**:
 
 - [x] Consents acquisition with modal
 - [x] User Data portability
-- [ ] Logs of operations made
+- [x] Logs of operations made
 - [ ] User Data deletion
 
 ## Contributing
