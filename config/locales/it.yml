@@ -5,6 +5,7 @@ it:
       available_policies: Policy Disponibili
       add_policy: Aggiungi Policy
       type: Tipo Policy
+      name: Nome Policy
       version: Versione
       blocking: Policy Obbligatoria
       updated_at: Ultimo Aggiornamento
@@ -27,6 +28,7 @@ it:
     new:
       new_policy: Nuova Policy
       policy_type: Tipo Policy
+      policy_name: Nome Policy
       select_policy_type: seleziona tipo policy ...
       create_policy: Aggiungi Policy
       policy_created: Policy Creata!

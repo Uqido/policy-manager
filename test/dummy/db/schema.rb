@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181122165350) do
+ActiveRecord::Schema.define(version: 20181205163843) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20181122165350) do
   add_index "policy_manager_logs", ["user_id"], name: "index_policy_manager_logs_on_user_id"
 
   create_table "policy_manager_policies", force: :cascade do |t|
+    t.string   "name"
     t.string   "policy_type"
     t.text     "content"
     t.integer  "version"

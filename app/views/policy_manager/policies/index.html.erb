@@ -6,6 +6,7 @@
       <tr>
         <th><%= t('policies.index.version') %></th>
         <th><%= t('policies.index.type') %></th>
+        <th><%= t('policies.index.name') %></th>
         <th><%= t('policies.index.blocking') %></th>
         <th><%= t('policies.index.updated_at') %></th>
         <th><%= t('policies.index.content') %></th>
@@ -17,7 +18,8 @@
       <% @policies.each do |policy| %>
         <tr>
           <td><%= policy.version %></td>
-          <td><%= policy.policy_type.capitalize %></td>
+          <td><%= policy.policy_type.upcase %></td>
+          <td><%= policy.name %></td>
           <td><%= policy.blocking %></td>
           <td><%= l policy.updated_at, format: '%d/%m/%Y' %></td>
           <td class="policy-content"><%= policy.to_html %></td>
