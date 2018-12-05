@@ -1,8 +1,8 @@
- class CreatePolicyManagerUserPolicies < ActiveRecord::Migration
+class CreatePolicyManagerUserPolicies < ActiveRecord::Migration
   def change
     create_table :policy_manager_user_policies do |t|
-      t.integer :user_id
-      t.integer :policy_id
+      t.integer :user_id, index: true
+      t.integer :policy_id, index: true
       t.boolean :accepted
 
       t.timestamps null: false

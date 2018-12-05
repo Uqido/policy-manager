@@ -7,6 +7,7 @@ module PolicyManager
       TYPES = %w[cookie privacy terms_of_service].freeze
     end
 
+    validates_presence_of :name
     validates_presence_of :policy_type
     validates_presence_of :content
     validates_presence_of :version

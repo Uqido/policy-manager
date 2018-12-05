@@ -2,6 +2,7 @@
 class CreatePolicyManagerPolicies < ActiveRecord::Migration
   def change
     create_table :policy_manager_policies do |t|
+      t.string :name
       t.string :policy_type
       t.text :content
       t.integer :version
