@@ -39,10 +39,10 @@ without (obviously) finding them.
 In /config/initializers/policy_manager.rb do:
 
     PolicyManager::Config.setup do |c|
-      c.logout_url = 'logout_url'
       c.user_resource = User # defaults to User
     
       c.add_policy({
+                     name: 'The Cookie Policy',
                      policy_type: PolicyManager::Policy::PolicyTypes::COOKIE,
                      content: 'your html here',
                      version: 1,
@@ -50,6 +50,7 @@ In /config/initializers/policy_manager.rb do:
                  })
     
       c.add_policy({
+                     name: 'The Privacy Policy',
                      policy_type: PolicyManager::Policy::PolicyTypes::PRIVACY,
                      content: 'your html here',
                      version: 1,
