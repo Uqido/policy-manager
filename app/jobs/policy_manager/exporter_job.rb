@@ -15,14 +15,14 @@ module PolicyManager
           key.each_key do |relation|
             result[relation.to_s] = []
 
-            user.send(relation).each do |elem|
-              element = {}
+            user.send(relation).each do |related_element|
+              related_element_hash = {}
 
               Config.portability_map[index][relation].each do |field|
-                element[field.to_s] = elem.send(field)
+                related_element_hash[field.to_s] = related_element.send(field)
               end
 
-              result[relation.to_s] << element
+              result[relation.to_s] << related_element_hash
             end
           end
         else
