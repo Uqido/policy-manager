@@ -2,7 +2,7 @@ require_dependency 'policy_manager/application_controller'
 
 module PolicyManager
   class PortabilityRequestsController < ApplicationController
-
+    before_action :user_authenticated?
     before_action :set_portability_request, only: [:attachment]
 
     def index
