@@ -93,6 +93,12 @@ import them in the **ApplicationController**:
 
 - ` helper PolicyManager::UserPoliciesHelper `
 - ` helper PolicyManager::PoliciesHelper `
+
+### Routes
+
+The Policy Manager gem adds some custom routes to manage the policies.
+A complete list of the available routes is available in the **Routing Error** page under 
+the **Routes for PolicyManager::Engine** section.
 ## TODO
 
 - [x] Consents acquisition with modal
