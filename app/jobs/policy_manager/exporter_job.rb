@@ -15,7 +15,10 @@ module PolicyManager
           key.each_key do |relation|
             result[relation.to_s] = []
 
-            user.send(relation).each do |related_element|
+            related_elements = user.send(relation)
+            related_elements ||= []
+
+            related_elements.each do |related_element|
               related_element_hash = {}
 
               Config.portability_map[index][relation].each do |field|
@@ -44,7 +47,7 @@ module PolicyManager
 
       File.delete(file_name)
     rescue StandardError
-      portability_request.mark_as_failed
+      portability_request.mark_as_failed if portability_request
     end
   end
 end
