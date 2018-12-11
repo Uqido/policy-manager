@@ -47,7 +47,7 @@ module PolicyManager
 
       File.delete(file_name)
     rescue StandardError
-      portability_request.mark_as_failed
+      portability_request.mark_as_failed if portability_request
     end
   end
 end
