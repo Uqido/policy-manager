@@ -55,7 +55,7 @@ module PolicyManager
     end
 
     def policy_params
-      params.require(:policy).permit(:policy_type, :content, :version, :blocking)
+      params.require(:policy).permit(:name, :policy_type, :content, :version, :blocking)
     end
   end
 end

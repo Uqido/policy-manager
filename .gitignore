@@ -10,3 +10,5 @@ test/dummy/.sass-cache
 
 
 test/dummy/private/
+
+test/dummy/log/

@@ -1,0 +1,46 @@
+<h2><%= t('portability_requests.requests') %></h2>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th><%= t('portability_requests.state') %></th>
+      <th><%= t('portability_requests.created_at') %></th>
+      <th><%= t('portability_requests.updated_at') %></th>
+      <th><%= t('portability_requests.completed_at') %></th>
+      <th><%= t('portability_requests.failed_at') %></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @portability_requests.each do |portability_request| %>
+      <tr>
+        <td><%= t("portability_requests.#{portability_request.job_status}") %></td>
+        <td><%= l portability_request.created_at, format: "%d/%m/%Y #{t('portability_requests.at')} %H:%M" %></td>
+        <td><%= l portability_request.updated_at, format: "%d/%m/%Y #{t('portability_requests.at')} %H:%M" %></td>
+        <td>
+          <% if portability_request.job_completed_at %>
+            <%= l portability_request.job_completed_at, format: "%d/%m/%Y #{t('portability_requests.at')} %H:%M" %>
+          <% end %>
+        </td>
+        <td>
+          <% if portability_request.job_failed_at %>
+            <%= l portability_request.job_failed_at, format: "%d/%m/%Y #{t('portability_requests.at')} %H:%M" %>
+          <% end %>
+        </td>
+        <td>
+          <% if portability_request.attachment.exists? %>
+            <%= link_to "<i class='fa fa-download'></i>".html_safe, attachment_portability_request_path(portability_request) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="float-right">
+  <%= link_to t('portability_requests.new'), portability_requests_path, method: :post, class: "btn btn-success" %>
+</div>

@@ -11,9 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181031134131) do
+ActiveRecord::Schema.define(version: 20181205154932) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.string   "subtitle"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id"
 
   create_table "policy_manager_policies", force: :cascade do |t|
+    t.string   "name"
     t.string   "policy_type"
     t.text     "content"
     t.integer  "version"
@@ -22,6 +34,21 @@ ActiveRecord::Schema.define(version: 20181031134131) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "policy_manager_portability_requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "attachment"
+    t.string   "attachment_file_name"
+    t.string   "attachment_file_size"
+    t.string   "attachment_content_type"
+    t.string   "attachment_file_content_type"
+    t.datetime "job_completed_at"
+    t.datetime "job_failed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "policy_manager_portability_requests", ["user_id"], name: "index_policy_manager_portability_requests_on_user_id"
+
   create_table "policy_manager_user_policies", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "policy_id"
@@ -29,6 +56,9 @@ ActiveRecord::Schema.define(version: 20181031134131) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "policy_manager_user_policies", ["policy_id"], name: "index_policy_manager_user_policies_on_policy_id"
+  add_index "policy_manager_user_policies", ["user_id"], name: "index_policy_manager_user_policies_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

@@ -1,10 +1,10 @@
 module PolicyManager
   class Config
 
-    mattr_accessor :logout_url,
-                   :user_resource,
+    mattr_accessor :user_resource,
                    :admin_user_resource,
-                   :is_admin_method
+                   :is_admin_method,
+                   :portability_map
 
 
     def self.setup
@@ -13,12 +13,13 @@ module PolicyManager
       # sets this defaults after configuration
       @@user_resource ||= User
       @@admin_user_resource ||= User
+      @@portability_map ||= {}
 
       self
     end
 
     def self.add_policy(opts = {})
-      PolicyManager::Policy.where(policy_type: opts[:policy_type], version: opts[:version]).first_or_create do |policy|
+      PolicyManager::Policy.where(name: opts[:name], policy_type: opts[:policy_type], version: opts[:version]).first_or_create! do |policy|
         policy.policy_type  = opts[:policy_type]
         policy.version      = opts[:version]
         policy.content      = opts[:content]
@@ -26,6 +27,12 @@ module PolicyManager
       end
     rescue ActiveRecord::StatementInvalid => e
       PolicyManager::Policy.migration_missing_errors e
+    rescue ActiveRecord::RecordInvalid => e
+      puts '-------------------------------------------------------------------------------------------'
+      puts 'PolicyManager Configuration Invalid. Please review your initializer                        '
+      puts '-------------------------------------------------------------------------------------------'
+      puts "Exception Class: #{e.class.name}"
+      puts "Exception Message: #{e.message}"
     end
 
     def self.is_admin?(user)

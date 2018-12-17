@@ -39,10 +39,10 @@ without (obviously) finding them.
 In /config/initializers/policy_manager.rb do:
 
     PolicyManager::Config.setup do |c|
-      c.logout_url = 'logout_url'
       c.user_resource = User # defaults to User
     
       c.add_policy({
+                     name: 'The Cookie Policy',
                      policy_type: PolicyManager::Policy::PolicyTypes::COOKIE,
                      content: 'your html here',
                      version: 1,
@@ -50,6 +50,7 @@ In /config/initializers/policy_manager.rb do:
                  })
     
       c.add_policy({
+                     name: 'The Privacy Policy',
                      policy_type: PolicyManager::Policy::PolicyTypes::PRIVACY,
                      content: 'your html here',
                      version: 1,
@@ -59,6 +60,11 @@ In /config/initializers/policy_manager.rb do:
       c.is_admin_method = -> (user) { 
         user.admin? || user.superadmin?
       } 
+      
+      c.portability_map = [
+        :email,
+        articles: [:title, :subtitle, :description]
+      ]
     end
 
 In your app router add the following:
@@ -87,10 +93,17 @@ If you want to use PolicyManager helpers within you application you have to
 import them in the **ApplicationController**: 
 
 - ` helper PolicyManager::UserPoliciesHelper `
+- ` helper PolicyManager::PoliciesHelper `
+
+### Routes
+
+The Policy Manager gem adds some custom routes to manage the policies.
+A complete list of the available routes is available in the **Routing Error** page under 
+the **Routes for PolicyManager::Engine** section.
 ## TODO
 
 - [x] Consents acquisition with modal
-- [ ] User Data portability
+- [x] User Data portability
 - [ ] Logs of operations made
 - [ ] User Data deletion
 
