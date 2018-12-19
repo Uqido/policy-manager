@@ -6,7 +6,7 @@ module PolicyManager
     include PolicyManager::Concerns::WorksWithJob
 
     belongs_to :user, class_name: Config.user_resource.to_s
-    has_many :logs, as: :logable
+    has_many :logs, as: :loggable
 
     after_create -> { log_portability_requests(PolicyManager::Concerns::WorksWithJob::JobStatues::PROCESSING) }
     after_save :log_after_save
@@ -30,22 +30,22 @@ module PolicyManager
       when PolicyManager::Concerns::WorksWithJob::JobStatues::PROCESSING
         Log.create(
           log_type: Log::LogTypes::INFO,
-          description: "Created portability request #{self.id}",
-          logable: self,
+          description: 'Created new portability request',
+          loggable: self,
           user_id: self.user_id
         )
       when PolicyManager::Concerns::WorksWithJob::JobStatues::FAILED
         Log.create(
           log_type: Log::LogTypes::ERROR,
-          description: "Portability request #{self.id} failed",
-          logable: self,
+          description: 'Portability request failed',
+          loggable: self,
           user_id: self.user_id
         )
       when PolicyManager::Concerns::WorksWithJob::JobStatues::COMPLETED
         Log.create(
           log_type: Log::LogTypes::INFO,
-          description: "Portability request #{self.id} completed successfully",
-          logable: self,
+          description: 'Portability request completed successfully',
+          loggable: self,
           user_id: self.user_id
         )
       end

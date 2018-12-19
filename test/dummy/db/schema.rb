@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 20181205163843) do
   create_table "policy_manager_logs", force: :cascade do |t|
     t.string   "log_type"
     t.string   "description"
-    t.integer  "logable_id"
-    t.string   "logable_type"
+    t.integer  "loggable_id"
+    t.string   "loggable_type"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "policy_manager_logs", ["logable_type", "logable_id"], name: "index_policy_manager_logs_on_logable_type_and_logable_id"
+  add_index "policy_manager_logs", ["loggable_type", "loggable_id"], name: "index_policy_manager_logs_on_loggable_type_and_loggable_id"
   add_index "policy_manager_logs", ["user_id"], name: "index_policy_manager_logs_on_user_id"
 
   create_table "policy_manager_policies", force: :cascade do |t|
