@@ -15,8 +15,12 @@ module PolicyManager
           key.each_key do |relation|
             result[relation.to_s] = []
 
-            related_elements = user.send(relation)
-            related_elements ||= []
+            related_elements = []
+            if relation.to_s.pluralize == relation.to_s # it is a has_many
+              related_elements = user.send(relation)
+            else # it is an 1 to 1
+              related_elements << user.send(relation)
+            end
 
             related_elements.each do |related_element|
               related_element_hash = {}
@@ -46,8 +50,9 @@ module PolicyManager
       portability_request.mark_as_complete
 
       File.delete(file_name)
-    rescue StandardError
+    rescue StandardError => e
       portability_request.mark_as_failed if portability_request
+      raise e
     end
   end
 end
