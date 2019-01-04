@@ -39,6 +39,12 @@ module PolicyManager
 
             false
           end
+
+          def delete_user_data
+            yield self
+
+            self.destroy
+          end
         rescue ActiveRecord::StatementInvalid => e
           Policy.migration_missing_errors e
         end

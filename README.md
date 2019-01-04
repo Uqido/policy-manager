@@ -86,6 +86,19 @@ get the following methods for free:
 - `@user.reject_cookie_policy`
 - `@user.accept_privacy_policy`
 - `@user.reject_privacy_policy`
+- `@user.has_pending_blocking_policies?`
+- `@user.delete_user_data`
+
+The **delete_user_data** helper also accepts a block that will be executed before calling **destroy** on the **User**.
+This is meant to be used when you want to do something before destroying the user alongside it's dependencies.
+
+Example:
+
+    current_user.delete_user_data do
+        puts '------------------------------'
+        puts '--      YOUR CODE HERE      --'
+        puts '------------------------------'
+    end
 
 ### Helpers
 
@@ -105,7 +118,7 @@ the **Routes for PolicyManager::Engine** section.
 - [x] Consents acquisition with modal
 - [x] User Data portability
 - [x] Logs of operations made
-- [ ] User Data deletion
+- [x] User Data deletion
 
 ## Contributing
 
