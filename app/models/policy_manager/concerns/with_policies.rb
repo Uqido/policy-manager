@@ -31,6 +31,14 @@ module PolicyManager
             end
           end
 
+          def has_pending_policies?
+            Policy.signable_policies.each do |policy|
+              return true unless send("has_consented_#{policy.policy_type}?")
+            end
+
+            false
+          end
+
           def has_pending_blocking_policies?
             Policy.signable_policies.select{|p| p.blocking}.each do |policy|
               return true unless send("has_consented_#{policy.policy_type}?")
