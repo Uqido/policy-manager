@@ -4,7 +4,8 @@ module PolicyManager
       COOKIE  = 'cookie'.freeze
       PRIVACY = 'privacy'.freeze
       TOS = 'terms_of_service'.freeze
-      TYPES = %w[cookie privacy terms_of_service].freeze
+      MARKETING = 'marketing'.freeze
+      TYPES = %w[cookie privacy terms_of_service marketing].freeze
     end
 
     validates_presence_of :name
