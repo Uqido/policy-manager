@@ -3,8 +3,9 @@ module PolicyManager
     module PolicyTypes
       COOKIE  = 'cookie'.freeze
       PRIVACY = 'privacy'.freeze
-      TOS     = 'terms_of_service'.freeze
-      TYPES   = %w[cookie privacy terms_of_service].freeze
+      TOS = 'terms_of_service'.freeze
+      MARKETING = 'marketing'.freeze
+      TYPES = %w[cookie privacy terms_of_service marketing].freeze
     end
     module PolicyActions
       CREATED  = 'created'.freeze

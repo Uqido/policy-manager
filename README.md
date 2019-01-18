@@ -82,6 +82,7 @@ get the following methods for free:
 
 - `@user.has_consented_cookie?`
 - `@user.has_consented_privacy?`
+- `@user.has_pending_policies?
 - `@user.accept_cookie_policy`
 - `@user.reject_cookie_policy`
 - `@user.accept_privacy_policy`
