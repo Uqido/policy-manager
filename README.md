@@ -82,12 +82,12 @@ get the following methods for free:
 
 - `@user.has_consented_cookie?`
 - `@user.has_consented_privacy?`
-- `@user.has_pending_policies?
+- `@user.has_pending_policies?`
+- `@user.has_pending_blocking_policies?`
 - `@user.accept_cookie_policy`
 - `@user.reject_cookie_policy`
 - `@user.accept_privacy_policy`
 - `@user.reject_privacy_policy`
-- `@user.has_pending_blocking_policies?`
 - `@user.delete_user_data`
 
 The **delete_user_data** helper also accepts a block that will be executed before calling **destroy** on the **User**.
