@@ -49,7 +49,7 @@ module PolicyManager
           end
 
           def delete_user_data
-            yield self
+            yield self if block_given?
 
             self.destroy
           end
