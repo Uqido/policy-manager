@@ -6,14 +6,14 @@ module PolicyManager
       extend ActiveSupport::Concern
 
       included do
-        scope :processing, -> { (where(job_completed_at: nil, job_failed_at: nil)) }
-        scope :completed, -> { (where.not(job_completed_at: nil)) }
-        scope :failed, -> { (where.not(job_failed_at: nil)) }
+        scope :processing, -> { where(job_completed_at: nil, job_failed_at: nil) }
+        scope :completed, -> { where.not(job_completed_at: nil) }
+        scope :failed, -> { where.not(job_failed_at: nil) }
 
         module JobStatues
-          PROCESSING = 'processing'
-          FAILED     = 'failed'
-          COMPLETED  = 'completed'
+          PROCESSING = 'processing'.freeze
+          FAILED     = 'failed'.freeze
+          COMPLETED  = 'completed'.freeze
         end
       end
 

@@ -60,4 +60,11 @@ en:
     processing: Processing
     completed: Completed
     failed: Failed
+  logs:
+    title: Policy Manager Logs
+    type: Type
+    entity: Entity
+    user: User
+    created_at: Created date
+    description: Description
 

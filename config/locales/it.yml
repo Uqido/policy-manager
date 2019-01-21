@@ -61,5 +61,12 @@ it:
     processing: Processing
     completed: Completed
     failed: Failed
+  logs:
+    title: Log di Policy Manager
+    type: Tipo
+    entity: Entità
+    user: Utente
+    created_at: Data creazione
+    description: Descrizione
 
 

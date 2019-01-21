@@ -7,6 +7,11 @@ module PolicyManager
       MARKETING = 'marketing'.freeze
       TYPES = %w[cookie privacy terms_of_service marketing].freeze
     end
+    module PolicyActions
+      CREATED  = 'created'.freeze
+      UPDATED  = 'updated'.freeze
+      DELETED  = 'deleted'.freeze
+    end
 
     validates_presence_of :name
     validates_presence_of :policy_type
@@ -14,6 +19,10 @@ module PolicyManager
     validates_presence_of :version
 
     validates_uniqueness_of :version, scope: :policy_type
+
+    after_create -> { log_policies(PolicyManager::Policy::PolicyActions::CREATED) }
+    after_update -> { log_policies(PolicyManager::Policy::PolicyActions::UPDATED) }
+    after_destroy -> { log_policies(PolicyManager::Policy::PolicyActions::DELETED) }
 
     scope :newer, ->(type) { where(policy_type: type).order(version: :desc).first }
 
@@ -37,5 +46,15 @@ module PolicyManager
       puts "Exception Class: #{e.class.name}"
       puts "Exception Message: #{e.message}"
     end
+
+    private
+
+      def log_policies(action)
+        Log.create(
+          log_type: Log::LogTypes::INFO,
+          description: "#{self.name}(#{self.policy_type}) was successfully #{action}",
+          loggable: self
+        )
+      end
   end
 end

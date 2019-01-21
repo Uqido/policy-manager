@@ -1,5 +1,4 @@
 PolicyManager::Config.setup do |c|
-  c.logout_url = 'logout'
   c.user_resource = User # defaults to User
 
   c.add_policy(
