@@ -21,6 +21,12 @@ module PolicyManager
       render nothing: true
     end
 
+    def bulk_update
+      BulkUpdateUserPolicies.new(bulk_user_policy_params).call
+
+      render nothing: true
+    end
+
     private
 
       def set_user_policy
@@ -28,6 +34,10 @@ module PolicyManager
       end
 
       def user_policy_params
+        params.require(:user_policy).permit(:policy_id, :accepted).merge(user_id: current_user.id)
+      end
+
+      def bulk_user_policy_params
         params.require(:user_policy).permit(:policy_id, :accepted).merge(user_id: current_user.id)
       end
   end
