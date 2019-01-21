@@ -47,6 +47,14 @@ module PolicyManager
 
             false
           end
+
+          def accept_policies ids
+            results = []
+            Policy.signable_policies.where(id: ids).each do |policy|
+              results << self.send("accept_#{policy.policy_type}")
+            end
+            results
+          end
         rescue ActiveRecord::StatementInvalid => e
           Policy.migration_missing_errors e
         end
