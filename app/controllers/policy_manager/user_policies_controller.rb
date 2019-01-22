@@ -22,9 +22,11 @@ module PolicyManager
     end
 
     def bulk_update
-      BulkUpdateUserPolicies.new(bulk_user_policy_params).call
+      updated = BulkUpdateUserPolicies.new(bulk_user_policy_params).call
 
-      render nothing: true
+      respond_to do |format|
+        format.json { render json: updated.map { |u| u.as_json(only: [:policy_id, :accepted]) } }
+      end
     end
 
     private
@@ -38,7 +40,7 @@ module PolicyManager
       end
 
       def bulk_user_policy_params
-        params.require(:user_policy).permit(:policy_id, :accepted).merge(user_id: current_user.id)
+        params.merge(user_id: current_user.id)
       end
   end
 end
