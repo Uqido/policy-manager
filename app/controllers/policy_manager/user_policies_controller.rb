@@ -40,7 +40,9 @@ module PolicyManager
       end
 
       def bulk_user_policy_params
-        params.merge(user_id: current_user.id)
+        permitted = params.slice(:user_policies).merge(user_id: current_user.id)
+        permitted[:user_policies].map! { |up| up.permit(:policy_id, :accepted) }
+        permitted
       end
   end
 end
