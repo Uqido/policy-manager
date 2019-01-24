@@ -1,1 +1,4 @@
 <%= user_policies_list(@current_user) %>
+<%= link_to 'accept_all', policy_manager.bulk_update_user_policies_path(
+    user_policies: PolicyManager::Policy.all.map {|p| { policy_id: p.id, accepted: true } }
+  ), method: :put, remote: true %>
