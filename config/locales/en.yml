@@ -2,7 +2,7 @@ en:
   app_title: Policy Manager
   "401":
       error_message: Oops.. You just found an error page..
-      error_explanation: We are sorry but you are not authorized to access this page&hellip;
+      error_explanation: We are sorry but you are not authorized to access this page...
       action: Go back
   policies:
     index:
