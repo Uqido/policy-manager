@@ -9,7 +9,9 @@
         <th><%= t('policies.index.name') %></th>
         <th><%= t('policies.index.blocking') %></th>
         <th><%= t('policies.index.updated_at') %></th>
-        <th><%= t('policies.index.content') %></th>
+        <% if false %><%# TODO: let's find a better solution to show the policy content %>
+          <th><%= t('policies.index.content') %></th>
+        <% end %>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -22,7 +24,9 @@
           <td><%= policy.name %></td>
           <td><%= policy.blocking %></td>
           <td><%= l policy.updated_at, format: '%d/%m/%Y' %></td>
-          <td class="policy-content"><%= policy.to_html %></td>
+          <% if false %><%# TODO: let's find a better solution to show the policy content %>
+            <td class="policy-content"><%= policy.to_html %></td>
+          <% end %>
           <td>
             <%=
               link_to "<i class='fa fa-eye'></i>".html_safe,
