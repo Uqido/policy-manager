@@ -1,5 +1,9 @@
 it:
   app_title: Policy Manager
+  "401":
+      error_message: Accesso non consentito
+      error_explanation: ci dispaice ma non sei autorizzato ad accedere a questa pagina&hellip;
+      action: Torna Indietro
   policies:
     index:
       available_policies: Policy Disponibili
