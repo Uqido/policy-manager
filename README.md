@@ -87,7 +87,7 @@ get the following methods for free:
 - `@user.reject_cookie_policy`
 - `@user.accept_privacy_policy`
 - `@user.reject_privacy_policy`
-
+- `@user.accept_policies`
 ### Helpers
 
 If you want to use PolicyManager helpers within you application you have to 
