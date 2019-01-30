@@ -7,7 +7,7 @@ module PolicyManager
     before_action :set_policy, only: [:show, :edit, :update, :destroy]
 
     def show
-      @edit_mode = Config.is_admin? current_user
+      @edit_mode = Config.is_admin? current_user if current_user
     end
 
     def index

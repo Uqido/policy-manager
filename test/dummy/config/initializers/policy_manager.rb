@@ -25,7 +25,7 @@ PolicyManager::Config.setup do |c|
   )
 
   c.is_admin_method = ->(user) {
-    user.is_admin? if user
+    user.is_admin?
   }
 
   c.portability_map = [
