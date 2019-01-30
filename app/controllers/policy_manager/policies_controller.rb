@@ -7,11 +7,6 @@ module PolicyManager
     before_action :set_policy, only: [:show, :edit, :update, :destroy]
 
     def show
-      unless current_user
-        render :show, layout: 'policy_manager/application'
-        return
-      end
-
       @edit_mode = Config.is_admin? current_user
     end
 
