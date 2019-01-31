@@ -1,6 +1,6 @@
 module PolicyManager
   class ApplicationController < ::ApplicationController # inherits from the main application controller
-    skip_before_action :verify_authenticity_token
+    protect_from_forgery with: :exception
 
     def allow_admins
       render file: 'policy_manager/401.erb', status: :unauthorized unless Config.is_admin?(current_user)
