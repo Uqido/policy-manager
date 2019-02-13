@@ -10,7 +10,6 @@ module PolicyManager
           has_many :logs, class_name: 'PolicyManager::Log'
 
           Policy.signable_policies.each do |policy|
-
             define_method :"has_consented_#{policy.policy_type}?" do
               user_policy = UserPolicy.find_by(policy_id: policy.id, user_id: self.id)
 
@@ -46,6 +45,16 @@ module PolicyManager
             end
 
             false
+          end
+
+          def accept_policies ids
+            return [] if ids.blank?
+
+            results = []
+            Policy.signable_policies.where(id: ids).each do |policy|
+              results << self.send("accept_#{policy.policy_type}")
+            end
+            results
           end
 
           def delete_user_data

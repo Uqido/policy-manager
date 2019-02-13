@@ -1,5 +1,9 @@
 it:
   app_title: Policy Manager
+  "401":
+      error_message: Accesso non consentito
+      error_explanation: Ci dispiace ma non sei autorizzato ad accedere a questa pagina...
+      action: Torna indietro
   policies:
     index:
       available_policies: Policy Disponibili
@@ -20,6 +24,7 @@ it:
       cookie: Normativa sui cookie
       privacy: Normativa sulla privacy
       terms_of_service: Termini e condizioni
+      marketing: Trattamento dati a fini commerciali
     show:
       title: Policy
       last_update: Ultimo Aggiornamento

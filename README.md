@@ -88,9 +88,13 @@ get the following methods for free:
 - `@user.reject_cookie_policy`
 - `@user.accept_privacy_policy`
 - `@user.reject_privacy_policy`
+- `@user.accept_policies`
 - `@user.delete_user_data`
 
-The **delete_user_data** helper also accepts a block that will be executed before calling **destroy** on the **User**.
+The **delete_user_data** helper simply calls the destroy method on the user resource therefore the management of the
+cancellation is delegated to the calling application.
+
+It also accepts a block that will be executed before calling **destroy** on the **User**.
 This is meant to be used when you want to do something before destroying the user alongside it's dependencies.
 
 Example:
@@ -100,7 +104,7 @@ Example:
         puts '--      YOUR CODE HERE      --'
         puts '------------------------------'
     end
-
+    
 ### Helpers
 
 If you want to use PolicyManager helpers within you application you have to 

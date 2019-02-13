@@ -21,6 +21,14 @@ module PolicyManager
       render nothing: true
     end
 
+    def bulk_update
+      updated = BulkUpdateUserPolicies.new(bulk_user_policy_params).call
+
+      respond_to do |format|
+        format.json { render json: updated.map { |u| u.as_json(only: [:policy_id, :accepted]) } }
+      end
+    end
+
     private
 
       def set_user_policy
@@ -29,6 +37,12 @@ module PolicyManager
 
       def user_policy_params
         params.require(:user_policy).permit(:policy_id, :accepted).merge(user_id: current_user.id)
+      end
+
+      def bulk_user_policy_params
+        permitted = params.slice(:user_policies).merge(user_id: current_user.id)
+        permitted[:user_policies].map! { |up| up.permit(:policy_id, :accepted) }
+        permitted
       end
   end
 end

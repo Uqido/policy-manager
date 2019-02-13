@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.2.7"
+  s.add_dependency "activejob", "~> 4.2.11"
   s.add_dependency "bootstrap-wysihtml5-rails"
   s.add_dependency "jquery-rails"
   s.add_dependency "paperclip"
