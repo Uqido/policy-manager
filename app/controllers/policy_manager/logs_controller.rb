@@ -6,7 +6,7 @@ module PolicyManager
     before_action :allow_admins
 
     def index
-      @logs = Log.all.page(params[:page])
+      @logs = Log.all.order(created_at: :desc).page(params[:page])
     end
   end
 end
