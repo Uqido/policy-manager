@@ -1,11 +1,9 @@
 module PolicyManager
   class Config
-
     mattr_accessor :user_resource,
                    :admin_user_resource,
                    :is_admin_method,
                    :portability_map
-
 
     def self.setup
       yield self
@@ -20,10 +18,13 @@ module PolicyManager
 
     def self.add_policy(opts = {})
       PolicyManager::Policy.where(name: opts[:name], policy_type: opts[:policy_type], version: opts[:version]).first_or_create! do |policy|
-        policy.policy_type  = opts[:policy_type]
-        policy.version      = opts[:version]
-        policy.content      = opts[:content]
-        policy.blocking     = opts[:blocking]
+        policy.attributes = {
+          name: opts[:name],
+          policy_type: opts[:policy_type],
+          version: opts[:version],
+          content: opts[:content],
+          blocking: opts[:blocking]
+        }
       end
     rescue ActiveRecord::StatementInvalid => e
       PolicyManager::Policy.migration_missing_errors e
@@ -47,6 +48,5 @@ module PolicyManager
     def self.has_different_admin_user_resource?
       user_resource != admin_user_resource
     end
-
   end
 end

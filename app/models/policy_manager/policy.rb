@@ -27,6 +27,8 @@ module PolicyManager
       DELETED  = 'deleted'.freeze
     end
 
+    translates :name, :content
+
     validates_presence_of :name
     validates_presence_of :policy_type
     validates_presence_of :content
