@@ -67,6 +67,11 @@ In /config/initializers/policy_manager.rb do:
       ]
     end
 
+**Important:** Policies are translated using the [Globalize](https://github.com/globalize/globalize) gem. By creating them via config
+it's implied that `name` and `content` will be for the current `I18n.locale`. If you want to 
+create policies for a specific locale via config just wrap the `add_policy` method inside a
+`I18n.with_locale(:your_locale)` block.
+
 In your app router add the following:
 
     mount PolicyManager::Engine => "/policies"
