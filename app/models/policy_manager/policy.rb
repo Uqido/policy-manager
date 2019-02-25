@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: policy_manager_policies
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  policy_type :string
+#  content     :text
+#  version     :integer
+#  blocking    :boolean
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 module PolicyManager
   class Policy < ApplicationRecord
     module PolicyTypes

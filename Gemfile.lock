@@ -46,6 +46,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    annotate (2.7.4)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     arel (6.0.4)
     bootstrap-wysihtml5-rails (0.3.3.8)
       railties (>= 3.0)
@@ -141,6 +144,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   policy_manager!
   sqlite3
 

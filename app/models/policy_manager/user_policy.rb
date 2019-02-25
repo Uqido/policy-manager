@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: policy_manager_user_policies
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  policy_id  :integer
+#  accepted   :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 module PolicyManager
   class UserPolicy < ApplicationRecord
     belongs_to :user, class_name: Config.user_resource.to_s
