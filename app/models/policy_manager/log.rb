@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: policy_manager_logs
+#
+#  id            :integer          not null, primary key
+#  log_type      :string
+#  description   :string
+#  loggable_id   :integer
+#  loggable_type :string
+#  user_id       :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 module PolicyManager
   class Log < ActiveRecord::Base
     module LogTypes

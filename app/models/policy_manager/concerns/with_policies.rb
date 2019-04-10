@@ -51,8 +51,8 @@ module PolicyManager
             return [] if ids.blank?
 
             results = []
-            Policy.signable_policies.where(id: ids).each do |policy|
-              results << self.send("accept_#{policy.policy_type}")
+            Policy.signable_policies.select {|p| ids.include? p.id }.each do |policy|
+              results << self.send("accept_#{policy.policy_type}_policy")
             end
             results
           end
